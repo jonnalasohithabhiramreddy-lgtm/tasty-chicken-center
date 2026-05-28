@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TASTY CHICKEN CENTER</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px;
+position:relative;
+}
+
+.bg{
+position:absolute;
+width:500px;
+height:500px;
+background:#ff3c00;
+filter:blur(180px);
+opacity:0.18;
+border-radius:50%;
+animation:move 8s infinite alternate;
+}
+
+@keyframes move{
+from{
+transform:translateY(-50px);
+}
+to{
+transform:translateY(50px);
+}
+}
+
+.container{
+width:100%;
+max-width:950px;
+background:#151515;
+padding:45px;
+border-radius:30px;
+position:relative;
+z-index:2;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+h1{
+text-align:center;
+color:#ff3c00;
+font-size:55px;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:#ccc;
+margin-bottom:35px;
+font-size:17px;
+}
+
+.info-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-bottom:35px;
+}
+
+.info-card{
+background:#1d1d1d;
+padding:20px;
+border-radius:20px;
+text-align:center;
+}
+
+.info-card h3{
+color:#ffb700;
+margin-bottom:10px;
+}
+
+.info-card p{
+color:#ccc;
+line-height:28px;
+}
+
+.menu-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-bottom:35px;
+}
+
+.menu-card{
+background:#1d1d1d;
+padding:20px;
+border-radius:20px;
+text-align:center;
+}
+
+.menu-card h3{
+color:#ffb700;
+margin-bottom:10px;
+}
+
+.menu-card p{
+color:#ccc;
+}
+
+select,input,textarea{
+width:100%;
+padding:18px;
+border:none;
+border-radius:12px;
+background:#222;
+color:white;
+margin-bottom:20px;
+font-size:16px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:12px;
+background:#ff3c00;
+color:white;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+transform:scale(1.02);
+}
+
+.map-btn{
+display:block;
+width:100%;
+text-align:center;
+text-decoration:none;
+padding:18px;
+border-radius:12px;
+background:#ffb700;
+color:black;
+font-weight:700;
+margin-top:15px;
+}
+
+#total{
+text-align:center;
+font-size:32px;
+color:#ffb700;
+margin-bottom:20px;
+}
+
+/* STATUS PAGE */
+
+.status-page{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:9999;
+}
+
+.status-box{
+width:100%;
+max-width:650px;
+background:#151515;
+padding:40px;
+border-radius:30px;
+border:1px solid #333;
+}
+
+.status-box h2{
+text-align:center;
+font-size:40px;
+color:#ffb700;
+margin-bottom:30px;
+}
+
+.step{
+padding:20px;
+border-radius:18px;
+background:#1f1f1f;
+margin-bottom:18px;
+font-size:20px;
+font-weight:600;
+color:#777;
+border:2px solid transparent;
+transition:0.4s;
+}
+
+/* ACTIVE STEP */
+
+.active{
+background:#003b18;
+color:#00ff99;
+border:2px solid #00ff99;
+transform:scale(1.03);
+box-shadow:0 0 20px rgba(0,255,153,0.4);
+}
+
+/* COMPLETED STEP */
+
+.completed{
+background:#00253b;
+color:#00c3ff;
+border:2px solid #00c3ff;
+}
+
+/* SUCCESS */
+
+.success{
+display:none;
+margin-top:25px;
+padding:25px;
+border-radius:18px;
+background:#003b18;
+text-align:center;
+border:1px solid #00ff99;
+}
+
+.success h3{
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.order-again{
+background:#00aaff;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="bg"></div>
+
+<div class="container">
+
+<h1>TASTY CHICKEN</h1>
+
+<p class="subtitle">
+Fresh Premium Chicken Everyday 🍗🔥
+</p>
+
+<div class="info-box">
+
+<div class="info-card">
+
+<h3>📍 Location</h3>
+
+<p>
+Shop No 01,<br>
+Main Road Old,<br>
+Mangalagiri,<br>
+Andhra Pradesh 522503
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>📞 Contact</h3>
+
+<p>7670927844</p>
+<!-- ORDER TIMINGS -->
+
+<div class="info-card">
+  
+  <h3>⏰ Order Timings</h3>
+  
+  <p>
+    Morning : 7:00 AM to 12:30 PM<br><br>
+    Evening : 4:00 PM to 9:00 PM
+  </p>
+  
+</div>
+</div>
+
+</div>
+
+<a class="map-btn"
+href="https://www.google.com/maps/search/?api=1&query=TASTY+CHICKEN+CENTER+Mangalagiri"
+target="_blank">
+
+Open Location In Google Maps
+
+</a>
+
+<br><br>
+
+<div class="menu-box">
+
+<div class="menu-card">
+<h3>Dum Cut</h3>
+<p>Fresh Chicken</p>
+</div>
+
+<div class="menu-card">
+<h3>Lollipops</h3>
+<p>Premium Chicken</p>
+</div>
+
+<div class="menu-card">
+<h3>Skin Chicken</h3>
+<p>Fresh Cut</p>
+</div>
+
+<div class="menu-card">
+<h3>Skinless</h3>
+<p>Clean Cut</p>
+</div>
+
+<div class="menu-card">
+<h3>Wings</h3>
+<p>Fresh Wings</p>
+</div>
+
+<div class="menu-card">
+<h3>Curry Cut</h3>
+<p>Perfect Pieces</p>
+</div>
+
+</div>
+
+<!-- ORDER FORM -->
+
+<div id="orderForm">
+
+<input type="text"
+id="name"
+placeholder="Your Name">
+
+<input type="tel"
+id="phone"
+placeholder="Phone Number">
+
+<select id="menu">
+<option>Loading Prices...</option>
+</select>
+
+<input type="number"
+id="qty"
+placeholder="Quantity in KG">
+
+<select id="payment">
+<option>Cash On Delivery</option>
+</select>
+
+<textarea id="address"
+placeholder="Enter Full Address"></textarea>
+
+<button onclick="getLocation()">
+📍 Use Current Location
+</button>
+
+<h2 id="total">
+Total: ₹0
+</h2>
+
+<button onclick="placeOrder()">
+Place Order
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LIVE STATUS PAGE -->
+
+<div class="status-page"
+id="statusPage">
+
+<div class="status-box">
+
+<h2>
+📦 LIVE ORDER STATUS
+</h2>
+
+<div class="step active"
+id="step1">
+
+✅ Order Received
+
+</div>
+
+<div class="step"
+id="step2">
+
+🍗 Preparing Your Order
+
+</div>
+
+<div class="step"
+id="step3">
+
+🛵 Order On The Way
+
+</div>
+
+<div class="step"
+id="step4">
+
+🎉 Delivered Successfully
+
+</div>
+
+<!-- SUCCESS -->
+
+<div class="success"
+id="successBox">
+
+<h3>
+✅ Delivery Completed
+</h3>
+
+<p>
+Now You Can Place New Order
+</p>
+
+<button class="order-again"
+onclick="newOrder()">
+
+Order Again
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+get,
+child,
+push,
+set,
+onValue
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyBNjd1ITVY3t5zUKCrVsDkT9DQuMI0",
+
+authDomain:"tasty-chicken-center.firebaseapp.com",
+
+databaseURL:"https://tasty-chicken-center-default-rtdb.firebaseio.com",
+
+projectId:"tasty-chicken-center",
+
+storageBucket:"tasty-chicken-center.appspot.com",
+
+messagingSenderId:"1095490278352",
+
+appId:"1:1095490278352:web:62fe120ecf17b88ba71fd5"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+const menu = document.getElementById("menu");
+
+const qty = document.getElementById("qty");
+
+const total = document.getElementById("total");
+
+let lat = null;
+let lon = null;
+
+let orderId = null;
+
+/* LOAD PRICES */
+
+get(child(ref(db),"prices")).then((snap)=>{
+
+if(snap.exists()){
+
+const d = snap.val();
+
+menu.innerHTML = `
+
+<option value="${d.dumcut}">
+Dum Cut - ₹${d.dumcut}
+</option>
+
+<option value="${d.lollipops}">
+Lollipops - ₹${d.lollipops}
+</option>
+
+<option value="${d.skin}">
+Skin Chicken - ₹${d.skin}
+</option>
+
+<option value="${d.skinless}">
+Skinless - ₹${d.skinless}
+</option>
+
+<option value="${d.wings}">
+Wings - ₹${d.wings}
+</option>
+
+<option value="${d.currycut}">
+Curry Cut - ₹${d.currycut}
+</option>
+
+`;
+
+calc();
+
+}
+
+});
+
+/* TOTAL */
+
+menu.onchange = calc;
+
+qty.oninput = calc;
+
+function calc(){
+
+const price = Number(menu.value || 0);
+
+const quantity = Number(qty.value || 0);
+
+total.innerText =
+"Total: ₹" + (price * quantity);
+
+}
+
+/* LOCATION */
+
+window.getLocation = function(){
+
+navigator.geolocation.getCurrentPosition(async(pos)=>{
+
+lat = pos.coords.latitude;
+
+lon = pos.coords.longitude;
+
+const res = await fetch(
+`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+);
+
+const data = await res.json();
+
+document.getElementById("address").value =
+data.display_name;
+
+});
+
+};
+
+/* PLACE ORDER */
+
+window.placeOrder = function(){
+
+const name =
+document.getElementById("name").value;
+
+const phone =
+document.getElementById("phone").value;
+
+const address =
+document.getElementById("address").value;
+
+const quantity =
+document.getElementById("qty").value;
+
+if(!name || !phone || !address || !quantity){
+
+alert("Fill all details");
+
+return;
+
+}
+
+const orderRef = push(ref(db,"orders"));
+
+orderId = orderRef.key;
+
+const totalPrice =
+Number(menu.value) * Number(quantity);
+
+set(orderRef,{
+
+name:name,
+
+phone:phone,
+
+item:menu.options[menu.selectedIndex].text,
+
+qty:quantity,
+
+address:address,
+
+payment:"Cash On Delivery",
+
+total:totalPrice,
+
+status:"Order Received",
+
+lat:lat,
+
+lon:lon,
+
+createdAt:Date.now()
+
+});
+
+/* OPEN STATUS PAGE */
+
+document.getElementById("statusPage")
+.style.display = "flex";
+
+/* START LIVE TRACKING */
+
+listenOrder();
+
+alert("✅ Order Placed Successfully");
+
+};
+
+/* LIVE STATUS TRACKING */
+
+function listenOrder(){
+
+onValue(ref(db,"orders/"+orderId),(snap)=>{
+
+const d = snap.val();
+
+if(!d) return;
+
+/* RESET */
+
+resetSteps();
+
+/* ORDER RECEIVED */
+
+if(d.status === "Order Received"){
+
+document.getElementById("step1")
+.classList.add("active");
+
+}
+
+/* PREPARING YOUR ORDER */
+
+if(d.status === "Preparing Your Order"){
+
+document.getElementById("step1")
+.classList.add("completed");
+
+document.getElementById("step2")
+.classList.add("active");
+
+}
+
+/* ORDER ON THE WAY */
+
+if(d.status === "Order On The Way"){
+
+document.getElementById("step1")
+.classList.add("completed");
+
+document.getElementById("step2")
+.classList.add("completed");
+
+document.getElementById("step3")
+.classList.add("active");
+
+}
+
+/* DELIVERED */
+
+if(d.status === "Delivered"){
+
+document.getElementById("step1")
+.classList.add("completed");
+
+document.getElementById("step2")
+.classList.add("completed");
+
+document.getElementById("step3")
+.classList.add("completed");
+
+document.getElementById("step4")
+.classList.add("active");
+
+document.getElementById("successBox")
+.style.display = "block";
+
+}
+
+});
+
+}
+
+/* RESET STEPS */
+
+function resetSteps(){
+
+document.getElementById("step1")
+.className = "step";
+
+document.getElementById("step2")
+.className = "step";
+
+document.getElementById("step3")
+.className = "step";
+
+document.getElementById("step4")
+.className = "step";
+
+}
+
+/* ORDER AGAIN */
+
+window.newOrder = function(){
+
+document.getElementById("statusPage")
+.style.display = "none";
+
+document.getElementById("successBox")
+.style.display = "none";
+
+/* CLEAR FORM */
+
+document.getElementById("name").value = "";
+
+document.getElementById("phone").value = "";
+
+document.getElementById("qty").value = "";
+
+document.getElementById("address").value = "";
+
+resetSteps();
+
+calc();
+
+};
+
+calc();
+
+</script>
+
+</body>
+</html>
